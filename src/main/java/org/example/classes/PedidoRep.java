@@ -6,6 +6,7 @@ import java.util.List;
 
 public class PedidoRep {
     private List<Pedido> pedidoList;
+    private List<Mesa> mesaList = new ArrayList<>();
 
     public PedidoRep(){
         pedidoList = new ArrayList<>();
