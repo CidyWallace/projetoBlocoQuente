@@ -36,6 +36,18 @@ public class Pedido implements Comparable<Pedido> {
     public void setStatus(boolean status) {
         this.status = status;
     }
+    public void atulizaPedido(){
+
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "nome='" + nome + '\'' +
+                ", id=" + id +
+                ", status=" + status +
+                '}';
+    }
 
     public double getPreco() {
         cardapio = new Cardapio();
