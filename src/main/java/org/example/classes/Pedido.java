@@ -1,16 +1,16 @@
 package org.example.classes;
 
-public class Pedido {
+public class Pedido implements Comparable<Pedido> {
     private String nome;
     private int id;
     private boolean status;
 
     private Cardapio cardapio;
 
-    public Pedido(String nome, int id, boolean status) {
+    public Pedido(String nome, int id) {
         this.nome = nome;
         this.id = id;
-        this.status = status;
+        this.status = false;
     }
 
     public String getNome() {
@@ -37,8 +37,13 @@ public class Pedido {
         this.status = status;
     }
 
-    public double getPreco(String nome){
+    public double getPreco() {
         cardapio = new Cardapio();
-        return cardapio.pegaPreco(nome);
+        return cardapio.pegaPreco(getNome());
+    }
+
+    @Override
+    public int compareTo(Pedido o) {
+        return nome.compareTo(o.getNome());
     }
 }
