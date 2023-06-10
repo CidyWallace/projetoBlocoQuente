@@ -7,10 +7,10 @@ public class Pedido {
 
     private Cardapio cardapio;
 
-    public Pedido(String nome, int id, boolean status) {
+    public Pedido(String nome, int id) {
         this.nome = nome;
         this.id = id;
-        this.status = status;
+        this.status = false;
     }
 
     public String getNome() {
@@ -35,6 +35,18 @@ public class Pedido {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+    public void atulizaPedido(){
+
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "nome='" + nome + '\'' +
+                ", id=" + id +
+                ", status=" + status +
+                '}';
     }
 
     public double getPreco(String nome){
