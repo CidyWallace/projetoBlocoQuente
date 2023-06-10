@@ -7,11 +7,14 @@ public class Pedido implements Comparable<Pedido> {
     private boolean status;
     private static int num = 0;
 
+    Cardapio Repcardapio;
+
     public Pedido(String nome, Cardapio cardapio) {
         this.nome = nome;
         this.setId(gerador_numero());
         this.status = false;
-        this.setPreco(cardapio);
+        Repcardapio = cardapio;
+        this.setPreco();
     }
 
     public String getNome() {
@@ -22,8 +25,8 @@ public class Pedido implements Comparable<Pedido> {
         this.nome = nome;
     }
 
-    public void setPreco(Cardapio cardapio) {
-        this.preco = cardapio.pegaPreco(getNome());
+    public void setPreco() {
+        this.preco = Repcardapio.pegaPreco(getNome());
     }
 
     public int getId() {

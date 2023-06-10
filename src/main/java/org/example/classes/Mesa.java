@@ -9,7 +9,7 @@ public class Mesa {
         this.disponivel = disponivel;
     }
 
-    public int getNumero() {
+    private int getNumero() {
         return numero;
     }
 
@@ -23,5 +23,13 @@ public class Mesa {
 
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
+    }
+
+    @Override
+    public String toString() {
+        return "Mesa{" +
+                "numero=" + numero +
+                ", disponivel=" + disponivel +
+                '}';
     }
 }
