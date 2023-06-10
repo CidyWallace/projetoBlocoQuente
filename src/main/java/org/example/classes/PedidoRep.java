@@ -13,13 +13,15 @@ public class PedidoRep {
     public void addPedido(Pedido pedido){
         pedidoList.add(pedido);
     }
-    public void removePedido(int numero){
-        pedidoList.remove(numero);
-    }
     public String pegaPedido(int numero){
         return pedidoList.get(numero).toString();
     }
     public void cancelaPedido(int numero){
         pedidoList.remove(numero);
+    }
+    public void getRelatorios(){
+        for (Pedido pedido : pedidoList) {
+            System.out.println(pedido.toString());
+        }
     }
 }
