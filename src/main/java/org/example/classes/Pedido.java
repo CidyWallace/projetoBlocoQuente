@@ -2,15 +2,19 @@ package org.example.classes;
 
 public class Pedido implements Comparable<Pedido> {
     private String nome;
+    private double preco;
     private int id;
     private boolean status;
+    private static int num = 0;
 
-    private Cardapio cardapio;
+    Cardapio Repcardapio;
 
-    public Pedido(String nome, int id) {
+    public Pedido(String nome, Cardapio cardapio) {
         this.nome = nome;
-        this.id = id;
+        this.setId(gerador_numero());
         this.status = false;
+        Repcardapio = cardapio;
+        this.setPreco();
     }
 
     public String getNome() {
@@ -19,6 +23,10 @@ public class Pedido implements Comparable<Pedido> {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public void setPreco() {
+        this.preco = Repcardapio.pegaPreco(getNome());
     }
 
     public int getId() {
@@ -36,26 +44,23 @@ public class Pedido implements Comparable<Pedido> {
     public void setStatus(boolean status) {
         this.status = status;
     }
-    public void atulizaPedido(){
 
+    private static int gerador_numero(){
+        return num++;
+    }
+
+    @Override
+    public int compareTo(Pedido o) {
+        return nome.compareTo(o.getNome());
     }
 
     @Override
     public String toString() {
         return "Pedido{" +
                 "nome='" + nome + '\'' +
+                ", preco=" + preco +
                 ", id=" + id +
                 ", status=" + status +
                 '}';
-    }
-
-    public double getPreco() {
-        cardapio = new Cardapio();
-        return cardapio.pegaPreco(getNome());
-    }
-
-    @Override
-    public int compareTo(Pedido o) {
-        return nome.compareTo(o.getNome());
     }
 }
