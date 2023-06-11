@@ -6,49 +6,65 @@ import java.util.List;
 
 public class PedidoRep {
     private List<Pedido> pedidoList;
-    private List<Mesa> mesaList = new ArrayList<>();
+    private List<Mesa> mesaList;
 
     //pedido
-    public PedidoRep(){
+    public PedidoRep() {
         pedidoList = new ArrayList<>();
+        mesaList = new ArrayList<>();
     }
-    public void addPedido(Pedido pedido){
+
+    public void addPedido(Pedido pedido) {
         pedidoList.add(pedido);
     }
-    public String pegaPedido(int numero){
-        return pedidoList.get(numero).toString();
+
+    public String pegaPedido(int num) {
+        return pedidoList.get(getIdPedido(num)).toString();
     }
-    public void cancelaPedido(int numero){
-        if(pedidoList.get(numero).isStatus() == false){
-            pedidoList.remove(numero);
+
+    public void cancelaPedido(int num) {
+        if (pedidoList.get(getIdPedido(num)).isStatus() == false) {
+            pedidoList.remove(getIdPedido(num));
         }
     }
-    public void mudarPedido(int num, String nome){
-        if(pedidoList.get(num).isStatus() == false){
-            pedidoList.get(num).setNome(nome);
-            pedidoList.get(num).setPreco();
+
+    public void mudarPedido(int num, String nome) {
+        if (pedidoList.get(getIdPedido(num)).isStatus() == false) {
+            pedidoList.get(getIdPedido(num)).setNome(nome);
+            pedidoList.get(getIdPedido(num)).setPreco();
         }
     }
-    public void pagarPedido(int num){
-        if(pedidoList.get(num).isStatus() == false){
-            pedidoList.get(num).setStatus(true);
+
+    public void pagarPedido(int num) {
+        if (pedidoList.get(getIdPedido(num)).isStatus() == false) {
+            pedidoList.get(getIdPedido(num)).setStatus(true);
         }
     }
 
     //Mesa
-    public void addMesa(Mesa mesa){
+    public void addMesa(Mesa mesa) {
         mesaList.add(mesa);
     }
-    public Mesa pegarMesa(int numero){
-        if(mesaList.get(numero) != null){
+
+    public Mesa pegarMesa(int numero) {
+        if (mesaList.get(numero) != null) {
             return mesaList.get(numero);
         }
         return null;
     }
 
-    public void getRelatorios(){
+    public void getRelatorios() {
         for (Pedido pedido : pedidoList) {
             System.out.println(pedido.toString());
         }
+    }
+
+    private int getIdPedido(int num) {
+        for (int i = 0; i < pedidoList.size(); i++) {
+            if (pedidoList.get(i).getId() == num) {
+                return i;
+            }
+        }
+        return 0;
     }
 }

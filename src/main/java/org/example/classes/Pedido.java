@@ -5,7 +5,7 @@ public class Pedido implements Comparable<Pedido> {
     private double preco;
     private int id;
     private boolean status;
-    private static int num = 0;
+    private static int num = 1;
 
     Cardapio Repcardapio;
 
@@ -45,7 +45,7 @@ public class Pedido implements Comparable<Pedido> {
         this.status = status;
     }
 
-    private static int gerador_numero(){
+    private static int gerador_numero() {
         return num++;
     }
 
