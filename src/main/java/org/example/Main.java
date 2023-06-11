@@ -13,11 +13,6 @@ public class Main {
         PedidoRep repositorio = new PedidoRep();
         Funcionario funcionario = new Funcionario();
 
-        for (int i = 0; i < 10; i++) {
-            Mesa mesa = new Mesa(i, true);
-            repositorio.addMesa(mesa);
-        }
-
         boolean sair = false;
         while (!sair){
             Scanner in = new Scanner(System.in);
@@ -125,7 +120,8 @@ public class Main {
                                 sairMenuFuncionario = true;
                             }
                             case (4) -> {
-                                repositorio.SalvarRelaório();
+                                repositorio.organizarList();
+                                repositorio.SalvarRelatório();
                                 sairMenuFuncionario = true; sair = true;
                             }
                         }

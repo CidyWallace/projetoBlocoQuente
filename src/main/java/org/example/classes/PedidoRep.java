@@ -63,7 +63,7 @@ public class PedidoRep {
         }
     }
 
-    public void ornanizarList(){
+    public void organizarList(){
         Collections.sort(pedidoList);
     }
 
