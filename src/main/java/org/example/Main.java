@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.classes.*;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -16,6 +17,7 @@ public class Main {
             Mesa mesa = new Mesa(i, true);
             repositorio.addMesa(mesa);
         }
+
         boolean sair = false;
         while (!sair){
             Scanner in = new Scanner(System.in);
@@ -23,7 +25,18 @@ public class Main {
             System.out.println("\nBem vindo ao restaurante Bloco Quente");
             System.out.println("Digite oque desaja realizar:\n");
             System.out.println("0.Cardapio\n1.Realizar pedido\n2.Menu para funcionarios");
-            int opcao = in.nextInt();
+            int opcao;
+            while (true){
+            try {
+                opcao = in.nextInt();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Use apenas os numeros indicados");
+                in.nextLine();
+                }
+            }
+
+            int escolha;
             switch (opcao) {
                 case (0) -> {
                     System.out.println(cardapio.todosOsItens());
@@ -31,8 +44,15 @@ public class Main {
                 case (1) -> {
                     System.out.println(cardapio.todosOsItens());
                     System.out.println("Para realizar o pedido coloque o numero do item");
-                    in.nextLine();
-                    int escolha = in.nextInt();
+
+                    while (true){
+                    try {
+                        escolha = in.nextInt(); break;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Use apenas os numeros indicados");
+                        in.nextLine();
+                        }
+                    }
                     Pedido pedido = new Pedido(escolha, cardapio);
                     repositorio.addPedido(pedido);
                 }
@@ -46,31 +66,60 @@ public class Main {
                         System.out.println("\nMenu do funcionario");
                         System.out.println("Digite oque deseja realizar:\n");
                         System.out.println("0. Alterar pedido\n1. Concluir pedido do cliente\n2. Visualizar relatorio\n3. Sair do menu funcionario\n4. Fecha sistema e salva relatorios");
-                        opcao = in.nextInt();
-                        int escolha;
+                            while (true){
+                                try {
+                                    opcao = in.nextInt();
+                                    break;
+                                } catch (InputMismatchException e) {
+                                    System.out.println("Use apenas os numeros indicados");
+                                    in.nextLine();
+                                }
+                            }
                         String escolha1;
+
                         switch (opcao){
                             case (0) -> {
                                 System.out.println(repositorio.getRelatorios());
                                 System.out.println("Digite o numero do pedido que deseja alterar: \n");
-                                escolha = in.nextInt();
+                                while (true){
+                                try {
+                                    escolha = in.nextInt(); break;
+                                } catch (InputMismatchException e){
+                                    System.out.println("Use apenas os numeros indicados");
+                                    in.nextLine();
+                                    }
+                                }
+                                int aux = escolha; in.nextLine();
                                 System.out.println(cardapio.todosOsItens());
                                 System.out.println("Digite para oque deseja alterar: \n");
-                                in.nextLine();
-                                escolha1 = cardapio.pegaNome(in.nextInt());
-                                repositorio.mudarPedido(escolha, escolha1);
+                                while (true){
+                                    try {
+                                        escolha = in.nextInt(); break;
+                                    } catch (InputMismatchException e){
+                                        System.out.println("Use apenas os numeros indicados");
+                                        in.nextLine();
+                                    }
+                                }
+                                escolha1 = cardapio.pegaNome(escolha);
+                                repositorio.mudarPedido(aux, escolha1);
 
                             }
                             case (1) -> {
                                 System.out.println(repositorio.getRelatorios());
                                 System.out.println("\nDigite o numero do pedido que deseja concluir: \n");
-                                escolha = in.nextInt(); in.nextLine();
+                                while (true){
+                                    try {
+                                        escolha = in.nextInt(); break;
+                                    } catch (InputMismatchException e){
+                                        System.out.println("Use apenas os numeros indicados");
+                                        in.nextLine();
+                                    }
+                                }
                                 repositorio.pagarPedido(escolha);
-
                             }
                             case (2) -> {
                                 System.out.println(repositorio.getRelatorios());
-                                System.out.println("\nRepresentação do relatorio");
+                                System.out.println("Representação do relatorio");
                             }
                             case (3) -> {
                                 sairMenuFuncionario = true;
