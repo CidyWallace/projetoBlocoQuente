@@ -53,10 +53,15 @@ public class PedidoRep {
         return null;
     }
 
-    public void getRelatorios() {
-        for (Pedido pedido : pedidoList) {
-            System.out.println(pedido.toString());
+    public String getRelatorios() {
+        String tudo = "";
+
+        for (int i = 0; i < pedidoList.size(); i++) {
+            tudo += (i + 1) + ". ";
+            tudo += pedidoList.get(i).toString();
+            tudo += "\n";
         }
+        return tudo;
     }
 
     private int getIdPedido(int num) {

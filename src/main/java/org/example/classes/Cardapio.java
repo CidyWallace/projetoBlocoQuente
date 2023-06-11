@@ -47,4 +47,14 @@ public class Cardapio {
             listPreco.add(9.99);
             listPreco.add(8.99);
     }
+    public String todosOsItens(){
+        String todos = "";
+        for (int i = 0; i < listNome.size(); i++) {
+            todos += i+".";
+            todos += listNome.get(i) + " ";
+            todos += listPreco.get(i) + "R$";
+            todos += "\n";
+        }
+        return todos;
+    }
 }
