@@ -125,7 +125,7 @@ public class Main {
                                 sairMenuFuncionario = true;
                             }
                             case (4) -> {
-                                //TODO salvar relatorios antes de fechar
+                                repositorio.SalvarRelaório();
                                 sairMenuFuncionario = true; sair = true;
                             }
                         }
