@@ -24,7 +24,9 @@ public class Pedido implements Comparable<Pedido> {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
+    public double getPreco() {
+        return preco;
+    }
     public void setPreco() {
         this.preco = Repcardapio.pegaPreco(getNome());
     }

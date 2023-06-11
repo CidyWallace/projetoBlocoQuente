@@ -10,20 +10,14 @@ import java.util.List;
 
 public class PedidoRep {
     private List<Pedido> pedidoList;
-    private List<Mesa> mesaList;
 
     //pedido
     public PedidoRep() {
         pedidoList = new ArrayList<>();
-        mesaList = new ArrayList<>();
     }
 
     public void addPedido(Pedido pedido) {
         pedidoList.add(pedido);
-    }
-
-    public String pegaPedido(int num) {
-        return pedidoList.get(getIdPedido(num)).toString();
     }
 
     public void cancelaPedido(int num) {
@@ -45,18 +39,6 @@ public class PedidoRep {
         }
     }
 
-    //Mesa
-    public void addMesa(Mesa mesa) {
-        mesaList.add(mesa);
-    }
-
-    public Mesa pegarMesa(int numero) {
-        if (mesaList.get(numero) != null) {
-            return mesaList.get(numero);
-        }
-        return null;
-    }
-
     public String getRelatorios() {
         String tudo = "";
 
@@ -68,12 +50,13 @@ public class PedidoRep {
         return tudo;
     }
 
-    public void SalvarRelaório(){
+    public void SalvarRelatório(){
         try(BufferedWriter bw = new BufferedWriter(new FileWriter("Relatório.txt"))) {
             for (Pedido item: pedidoList) {
                 bw.write(item.toString());
                 bw.newLine();
             }
+            bw.write("Total Arrecadado R$"+totalArrecadado());
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -91,5 +74,14 @@ public class PedidoRep {
             }
         }
         return 0;
+    }
+
+    private float totalArrecadado(){
+        double total = 0;
+        for (int i = 0; i < pedidoList.size(); i++) {
+            total += pedidoList.get(i).getPreco();
+        }
+
+        return (float) total;
     }
 }
