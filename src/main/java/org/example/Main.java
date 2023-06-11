@@ -1,50 +1,49 @@
 package org.example;
 
 import org.example.classes.*;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        
         Cardapio cardapio = new Cardapio();
         cardapio.add_nomes();
         cardapio.add_precos();
         PedidoRep repositorio = new PedidoRep();
         Funcionario funcionario = new Funcionario();
-
         boolean sair = false;
-        while (!sair){
+        
+        while (!sair) {
             Scanner in = new Scanner(System.in);
-            System.out.println();
-            System.out.println("\nBem vindo ao restaurante Bloco Quente");
-            System.out.println("Digite oque desaja realizar:\n");
-            System.out.println("0.Cardapio\n1.Realizar pedido\n2.Menu para funcionarios");
+            System.out.println("Bem-vindo ao restaurante Bloco Quente!");
+            System.out.println("Digite o número correspondente à ação desejada:\n");
+            System.out.println("0. Cardápio\n1. Realizar pedido\n2. Menu para funcionários\n");
             int opcao;
-            while (true){
+            while (true) {
             try {
                 opcao = in.nextInt();
                 break;
             } catch (InputMismatchException e) {
-                System.out.println("Use apenas os numeros indicados");
+                System.out.println("Use apenas os números indicados.");
                 in.nextLine();
                 }
             }
-
             int escolha;
             switch (opcao) {
                 case (0) -> {
-                    System.out.println(cardapio.todosOsItens());
+                    System.out.println("\n"+cardapio.todosOsItens());
                 }
                 case (1) -> {
-                    System.out.println(cardapio.todosOsItens());
-                    System.out.println("Para realizar o pedido coloque o numero do item");
-
-                    while (true){
+                    System.out.println("\n"+cardapio.todosOsItens());
+                    System.out.println("Para realizar o pedido, coloque o número do item.");
+                    while (true) {
                     try {
-                        escolha = in.nextInt(); break;
-                    } catch (InputMismatchException e) {
-                        System.out.println("Use apenas os numeros indicados");
+                        escolha = in.nextInt();
+                        System.out.println();
+                        break;
+                    } catch (InputMismatchException e){
+                        System.out.println("Use apenas os números indicados.");
                         in.nextLine();
                         }
                     }
@@ -52,61 +51,60 @@ public class Main {
                     repositorio.addPedido(pedido);
                 }
                 case (2) -> {
-                    System.out.println("\nPara acessar o menu do funcionario informe a senha:");
+                    System.out.println("\nPara acessar o menu do funcionário, informe a senha:");
                     in.nextLine();
                     String senha = in.nextLine();
-                    if(funcionario.validaSenha(senha)){
+                    if(funcionario.validaSenha(senha)) {
                         boolean sairMenuFuncionario = false;
                         while(!sairMenuFuncionario){
-                        System.out.println("\nMenu do funcionario");
-                        System.out.println("Digite oque deseja realizar:\n");
-                        System.out.println("0. Alterar pedido\n1. Concluir pedido do cliente\n2. Visualizar relatorio\n3. Sair do menu funcionario\n4. Fecha sistema e salva relatorios\n5. Cancelar pedido");
-                            while (true){
-                                try {
+                        System.out.println("\nMenu do funcionário");
+                        System.out.println("Digite o que deseja realizar:\n");
+                        System.out.println("0. Alterar pedido\n1. Concluir pedido do cliente\n2. Visualizar relatório\n3. Sair do menu funcionário\n4. Fechar sistema e salvar os relatórios\n5. Cancelar pedido");
+                            while (true) {
+                                try{
                                     opcao = in.nextInt();
                                     break;
-                                } catch (InputMismatchException e) {
-                                    System.out.println("Use apenas os numeros indicados");
+                                } 
+                                catch (InputMismatchException e){
+                                    System.out.println("Use apenas os números indicados.");
                                     in.nextLine();
                                 }
                             }
                         String escolha1;
-
-                        switch (opcao){
+                        switch (opcao) {
                             case (0) -> {
                                 System.out.println(repositorio.getRelatorios());
-                                System.out.println("Digite o numero do pedido que deseja alterar: \n");
-                                while (true){
+                                System.out.println("Digite o número do pedido que deseja alterar: \n");
+                                while (true) {
                                 try {
                                     escolha = in.nextInt(); break;
-                                } catch (InputMismatchException e){
-                                    System.out.println("Use apenas os numeros indicados");
+                                } catch (InputMismatchException e) {
+                                    System.out.println("Use apenas os números indicados.");
                                     in.nextLine();
                                     }
                                 }
                                 int aux = escolha; in.nextLine();
                                 System.out.println(cardapio.todosOsItens());
                                 System.out.println("Digite para oque deseja alterar: \n");
-                                while (true){
+                                while (true) {
                                     try {
                                         escolha = in.nextInt(); break;
-                                    } catch (InputMismatchException e){
-                                        System.out.println("Use apenas os numeros indicados");
+                                    } catch (InputMismatchException e) {
+                                        System.out.println("Use apenas os números indicados.");
                                         in.nextLine();
                                     }
                                 }
                                 escolha1 = cardapio.pegaNome(escolha);
                                 repositorio.mudarPedido(aux, escolha1);
-
                             }
                             case (1) -> {
                                 System.out.println(repositorio.getRelatorios());
-                                System.out.println("\nDigite o numero do pedido que deseja concluir: \n");
-                                while (true){
+                                System.out.println("\nDigite o número do pedido que deseja concluir: \n");
+                                while (true) {
                                     try {
                                         escolha = in.nextInt(); break;
                                     } catch (InputMismatchException e){
-                                        System.out.println("Use apenas os numeros indicados");
+                                        System.out.println("Use apenas os números indicados.");
                                         in.nextLine();
                                     }
                                 }
@@ -114,7 +112,7 @@ public class Main {
                             }
                             case (2) -> {
                                 System.out.println(repositorio.getRelatorios());
-                                System.out.println("Representação do relatorio");
+                                System.out.println("Representação do relatório");
                             }
                             case (3) -> {
                                 sairMenuFuncionario = true;
@@ -126,22 +124,22 @@ public class Main {
                             }
                             case(5) -> {
                                 System.out.println(repositorio.getRelatorios());
-                                System.out.println("\nInforme qual pedido deseja cancelar: \n");
-                                while (true){
+                                System.out.println("\nInforme qual pedido deseja cancelar:\n");
+                                while (true) {
                                     try {
                                         escolha = in.nextInt(); break;
                                     } catch (InputMismatchException e){
-                                        System.out.println("Use apenas os numeros indicados");
+                                        System.out.println("Use apenas os números indicados.");
                                         in.nextLine();
                                     }
                                 }
                                 repositorio.cancelaPedido(escolha);
+                                }
                             }
                         }
-                            }
-                        }
-
                     }
                 }
             }
-    }}
+        }
+    }
+}

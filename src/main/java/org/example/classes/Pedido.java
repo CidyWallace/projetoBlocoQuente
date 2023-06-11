@@ -58,11 +58,10 @@ public class Pedido implements Comparable<Pedido> {
 
     @Override
     public String toString() {
-        return "Pedido{" +
-                "nome='" + nome + '\'' +
-                ", preco=" + preco +
-                ", id=" + id +
-                ", status=" + status +
-                '}';
+        return "Pedido\n" +
+                "Prato = '" + nome + '\'' + "\n" +
+                "Preço = " + preco + "\n" +
+                "Id = " + id + "\n" +
+                "Status = " + status;
     }
 }

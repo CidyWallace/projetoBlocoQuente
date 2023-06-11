@@ -4,9 +4,7 @@ package org.example.classes;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,7 +44,7 @@ public class PedidoRep {
         String tudo = "";
 
         for (int i = 0; i < pedidoList.size(); i++) {
-            tudo += (i + 1) + ". ";
+            tudo += (i + 1) + "º ";
             tudo += pedidoList.get(i).toString();
             tudo += "\n";
         }
@@ -61,7 +59,7 @@ public class PedidoRep {
                 bw.write(item.toString());
                 bw.newLine();
             }
-            bw.write("Total Arrecadado R$"+totalArrecadado()+"\nData:" + localDateTime.format(formatter));
+            bw.write("Total arrecadado R$"+totalArrecadado()+"\nData:" + localDateTime.format(formatter));
 
         } catch (IOException e) {
             throw new RuntimeException(e);

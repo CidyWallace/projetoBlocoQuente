@@ -53,9 +53,9 @@ public class Cardapio {
     public String todosOsItens(){
         String todos = "";
         for (int i = 0; i < listNome.size(); i++) {
-            todos += i+".";
+            todos += i+". ";
             todos += listNome.get(i) + ", ";
-            todos += listPreco.get(i) + "R$";
+            todos += "R$ "+listPreco.get(i);
             todos += "\n";
         }
         return todos;
