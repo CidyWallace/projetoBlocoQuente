@@ -2,6 +2,7 @@ package org.example.classes;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PedidoRep {
@@ -62,6 +63,10 @@ public class PedidoRep {
             tudo += "\n";
         }
         return tudo;
+    }
+
+    public void ornanizarList(){
+        Collections.sort(pedidoList);
     }
 
     private int getIdPedido(int num) {
