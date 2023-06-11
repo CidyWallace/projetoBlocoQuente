@@ -4,12 +4,18 @@ package org.example.classes;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class PedidoRep {
     private List<Pedido> pedidoList;
+    private LocalDateTime localDate;
+
 
     //pedido
     public PedidoRep() {
@@ -51,12 +57,14 @@ public class PedidoRep {
     }
 
     public void SalvarRelatório(){
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter("Relatório.txt"))) {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY");
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter("Relatório" + localDateTime.format(formatter) + ".txt"))) {
             for (Pedido item: pedidoList) {
                 bw.write(item.toString());
                 bw.newLine();
             }
-            bw.write("Total Arrecadado R$"+totalArrecadado());
+            bw.write("Total Arrecadado R$"+totalArrecadado()+"\nData:" + localDateTime.format(formatter));
 
         } catch (IOException e) {
             throw new RuntimeException(e);

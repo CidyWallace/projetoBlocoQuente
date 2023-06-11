@@ -60,7 +60,7 @@ public class Main {
                         while(!sairMenuFuncionario){
                         System.out.println("\nMenu do funcionario");
                         System.out.println("Digite oque deseja realizar:\n");
-                        System.out.println("0. Alterar pedido\n1. Concluir pedido do cliente\n2. Visualizar relatorio\n3. Sair do menu funcionario\n4. Fecha sistema e salva relatorios");
+                        System.out.println("0. Alterar pedido\n1. Concluir pedido do cliente\n2. Visualizar relatorio\n3. Sair do menu funcionario\n4. Fecha sistema e salva relatorios\n5. Cancelar pedido");
                             while (true){
                                 try {
                                     opcao = in.nextInt();
@@ -123,6 +123,19 @@ public class Main {
                                 repositorio.organizarList();
                                 repositorio.SalvarRelatório();
                                 sairMenuFuncionario = true; sair = true;
+                            }
+                            case(5) -> {
+                                System.out.println(repositorio.getRelatorios());
+                                System.out.println("\nInforme qual pedido deseja cancelar: \n");
+                                while (true){
+                                    try {
+                                        escolha = in.nextInt(); break;
+                                    } catch (InputMismatchException e){
+                                        System.out.println("Use apenas os numeros indicados");
+                                        in.nextLine();
+                                    }
+                                }
+                                repositorio.cancelaPedido(escolha);
                             }
                         }
                             }
