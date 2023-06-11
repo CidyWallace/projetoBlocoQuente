@@ -14,9 +14,6 @@ import java.util.List;
 
 public class PedidoRep {
     private List<Pedido> pedidoList;
-    private LocalDateTime localDate;
-
-
     //pedido
     public PedidoRep() {
         pedidoList = new ArrayList<>();
