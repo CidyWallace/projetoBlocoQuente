@@ -1,6 +1,9 @@
 package org.example.classes;
 
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,6 +65,17 @@ public class PedidoRep {
             tudo += "\n";
         }
         return tudo;
+    }
+
+    public void SalvarRelaório(){
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter("Relatório.txt"))) {
+            for (Pedido item: pedidoList) {
+                bw.write(item.toString());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private int getIdPedido(int num) {
