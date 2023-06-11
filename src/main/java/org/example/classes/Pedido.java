@@ -9,8 +9,8 @@ public class Pedido implements Comparable<Pedido> {
 
     Cardapio Repcardapio;
 
-    public Pedido(String nome, Cardapio cardapio) {
-        this.nome = nome;
+    public Pedido(int numero, Cardapio cardapio) {
+        this.nome = cardapio.pegaNome(numero);
         this.setId(gerador_numero());
         this.status = false;
         Repcardapio = cardapio;

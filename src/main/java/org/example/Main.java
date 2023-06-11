@@ -21,7 +21,7 @@ public class Main {
             Scanner in = new Scanner(System.in);
             System.out.println();
             System.out.println("\nBem vindo ao restaurante Bloco Quente");
-            System.out.println("Digite oque desaja realizar");
+            System.out.println("Digite oque desaja realizar:\n");
             System.out.println("0.Cardapio\n1.Realizar pedido\n2.Menu para funcionarios");
             int opcao = in.nextInt();
             switch (opcao) {
@@ -29,22 +29,23 @@ public class Main {
                     System.out.println(cardapio.todosOsItens());
                 }
                 case (1) -> {
-                    System.out.println("Para realizar o pedido coloque o nome do item do menu");
+                    System.out.println(cardapio.todosOsItens());
+                    System.out.println("Para realizar o pedido coloque o numero do item");
                     in.nextLine();
-                    String escolha = in.nextLine();
+                    int escolha = in.nextInt();
                     Pedido pedido = new Pedido(escolha, cardapio);
                     repositorio.addPedido(pedido);
                 }
                 case (2) -> {
-                    System.out.println("Para acessar o menu do funcionario informe a senha:");
+                    System.out.println("\nPara acessar o menu do funcionario informe a senha:");
                     in.nextLine();
                     String senha = in.nextLine();
                     if(funcionario.validaSenha(senha)){
                         boolean sairMenuFuncionario = false;
                         while(!sairMenuFuncionario){
-                        System.out.println("Menu do funcionario");
-                        System.out.println("Digite oque deseja realizar:");
-                        System.out.println("0. Alterar pedido\n1. Concluir pedido do cliente\n2. Gerar relatorio e salvar\n3. Sair do menu funcionario\n");
+                        System.out.println("\nMenu do funcionario");
+                        System.out.println("Digite oque deseja realizar:\n");
+                        System.out.println("0. Alterar pedido\n1. Concluir pedido do cliente\n2. Visualizar relatorio\n3. Sair do menu funcionario\n4. Fecha sistema e salva relatorios");
                         opcao = in.nextInt();
                         int escolha;
                         String escolha1;
@@ -56,7 +57,7 @@ public class Main {
                                 System.out.println(cardapio.todosOsItens());
                                 System.out.println("Digite para oque deseja alterar: \n");
                                 in.nextLine();
-                                escolha1 = in.nextLine();
+                                escolha1 = cardapio.pegaNome(in.nextInt());
                                 repositorio.mudarPedido(escolha, escolha1);
 
                             }
@@ -69,10 +70,14 @@ public class Main {
                             }
                             case (2) -> {
                                 System.out.println(repositorio.getRelatorios());
-                                System.out.println("\nRepresentação do relatorio salvo");
+                                System.out.println("\nRepresentação do relatorio");
                             }
                             case (3) -> {
                                 sairMenuFuncionario = true;
+                            }
+                            case (4) -> {
+                                //TODO salvar relatorios antes de fechar
+                                sairMenuFuncionario = true; sair = true;
                             }
                         }
                             }

@@ -21,6 +21,9 @@ public class Cardapio {
         }
         return 0.0;
     }
+    public String pegaNome(int numero){
+        return listNome.get(numero);
+    }
 
     public void add_nomes(){
             listNome.add("Sanduíche Fumegante");
@@ -51,7 +54,7 @@ public class Cardapio {
         String todos = "";
         for (int i = 0; i < listNome.size(); i++) {
             todos += i+".";
-            todos += listNome.get(i) + " ";
+            todos += listNome.get(i) + ", ";
             todos += listPreco.get(i) + "R$";
             todos += "\n";
         }
